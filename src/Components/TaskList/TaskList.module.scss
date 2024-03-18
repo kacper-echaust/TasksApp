@@ -1,40 +1,44 @@
 .listContainer {
-    width: 80%;
+	width: 80%;
 
-    ul {
-        list-style: none;
-        font-size: 18px;
-        text-transform: uppercase;
-        li {
-            display: flex;
-            justify-content: space-between;
-            color: white;
-            .completed {
-                text-decoration: line-through;
-            }
-            div {
-                width: 100px;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                input {
-                    width: 20px;
-                    height: 20px;
-                    margin: 0;
-                }
-                button {
-                    background: none;
-                    font-size: 26px;
-                    border: none;
-                    padding: 10px;
-                    color: white;
-                    cursor: pointer;
-                    transition: background 0.3s ease;
-                    &:hover {
-                        background: lightgrey;
-                    }
-                }
-            }
-        }
-    }
+	ul {
+		list-style: none;
+		font-size: 18px;
+		text-transform: uppercase;
+		li {
+			display: flex;
+			justify-content: space-between;
+			color: white;
+			.completed {
+				text-decoration: line-through;
+			}
+			div {
+				width: 200px;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				input {
+					width: 20px;
+					height: 20px;
+					margin: 0;
+				}
+				button {
+					background: none;
+					font-size: 26px;
+					border: none;
+					padding: 10px;
+					color: white;
+					cursor: pointer;
+					transition: background 0.3s ease;
+					&:hover {
+						background: lightgrey;
+					}
+				}
+				.renameButton {
+					font-size: 14px;
+					text-transform: uppercase;
+				}
+			}
+		}
+	}
 }

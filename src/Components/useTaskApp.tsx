@@ -33,11 +33,23 @@ const useTaskApp = () => {
 		const newArr = updateTaskComplete.filter(task => task.id !== id)
 		setTaskList(newArr)
 	}
+	const renameTask = (id: number, newText: string | null, { setTaskList, taskList }: taskListType) => {
+		if (newText) {
+			const updateTaskList = taskList.map(task => {
+				if (task.id === id) {
+					return { ...task, text: newText }
+				}
+				return task
+			})
+			setTaskList(updateTaskList)
+		}
+	}
 	return {
 		addTask,
 		getTask,
 		checkComplete,
 		deleteTask,
+		renameTask,
 	}
 }
 export { useTaskApp }
