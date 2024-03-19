@@ -1,6 +1,6 @@
 import { Form } from './Form/Form'
 import { TaskList } from './TaskList/TaskList'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import css from './TaskApp.module.scss'
 
 const TaskApp = () => {
@@ -10,6 +10,13 @@ const TaskApp = () => {
 		id: number
 	}
 	const [taskList, setTaskList] = useState<taskListType[]>([])
+
+	useEffect(() => {
+		const localData = localStorage.getItem('taskList')
+		if (localData) {
+			setTaskList(JSON.parse(localData))
+		}
+	}, [])
 
 	return (
 		<div className={css.taskAppContainer}>

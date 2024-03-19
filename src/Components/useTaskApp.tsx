@@ -16,7 +16,10 @@ const useTaskApp = () => {
 
 	const addTask = ({ setTaskList, taskList }: taskListType) => {
 		setId(id + 1)
-		setTaskList([...taskList, { text: task, completed: false, id: id }])
+		const newTask = [...taskList, { text: task, completed: false, id: id }]
+		setTaskList(newTask)
+		setTask('')
+		localStorage.setItem('taskList', JSON.stringify(newTask))
 	}
 
 	const checkComplete = (id: number, { taskList, setTaskList }: taskListType) => {
@@ -27,12 +30,16 @@ const useTaskApp = () => {
 			}
 		})
 		setTaskList(updateTaskComplete)
+		localStorage.setItem('taskList', JSON.stringify(updateTaskComplete))
 	}
+
 	const deleteTask = (id: number, { taskList, setTaskList }: taskListType) => {
-		const updateTaskComplete = [...taskList]
-		const newArr = updateTaskComplete.filter(task => task.id !== id)
+		const updateTask = [...taskList]
+		const newArr = updateTask.filter(task => task.id !== id)
 		setTaskList(newArr)
+		localStorage.setItem('taskList', JSON.stringify(newArr))
 	}
+
 	const renameTask = (id: number, newText: string | null, { setTaskList, taskList }: taskListType) => {
 		if (newText) {
 			const updateTaskList = taskList.map(task => {
@@ -42,6 +49,7 @@ const useTaskApp = () => {
 				return task
 			})
 			setTaskList(updateTaskList)
+			localStorage.setItem('taskList', JSON.stringify(updateTaskList))
 		}
 	}
 	return {
@@ -50,6 +58,7 @@ const useTaskApp = () => {
 		checkComplete,
 		deleteTask,
 		renameTask,
+		task,
 	}
 }
 export { useTaskApp }

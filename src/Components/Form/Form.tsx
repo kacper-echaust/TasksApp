@@ -8,7 +8,7 @@ type taskListType = {
 }
 
 const Form = ({ setTaskList, taskList }: taskListType) => {
-	const { addTask, getTask } = useTaskApp()
+	const { addTask, getTask, task } = useTaskApp()
 
 	return (
 		<div className={css.formContainer}>
@@ -17,7 +17,7 @@ const Form = ({ setTaskList, taskList }: taskListType) => {
 					event.preventDefault()
 					addTask({ setTaskList, taskList })
 				}}>
-				<input type='text' onChange={getTask} placeholder='ENTER THE CONTENT OF THE TASK!' />
+				<input type='text' onChange={getTask} placeholder='ENTER THE CONTENT OF THE TASK!' value={task} />
 			</form>
 		</div>
 	)

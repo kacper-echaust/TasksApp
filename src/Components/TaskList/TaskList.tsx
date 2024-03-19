@@ -18,13 +18,14 @@ const TaskList = ({ taskList, setTaskList }: taskListType) => {
 							<div>
 								<button
 									onClick={() => {
-										renameTask(task.id,prompt('Enter your rename'),{ taskList, setTaskList })
+										renameTask(task.id, prompt('Enter your rename'), { taskList, setTaskList })
 									}}
 									className={css.renameButton}>
 									rename
 								</button>
 								<input
 									type='checkbox'
+									checked={task.completed ? true : false}
 									onChange={() => checkComplete(task.id, { taskList, setTaskList })}
 								/>
 								<button onClick={() => deleteTask(task.id, { taskList, setTaskList })}>x</button>
