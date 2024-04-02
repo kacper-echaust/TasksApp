@@ -3,8 +3,8 @@ import { Dispatch, SetStateAction } from 'react'
 import css from './TaskList.module.scss'
 
 type taskListType = {
-	taskList: { text: string; completed: boolean; id: number }[]
-	setTaskList: Dispatch<SetStateAction<{ text: string; completed: boolean; id: number }[]>>
+	taskList: { text: string; completed: boolean; id: string }[]
+	setTaskList: Dispatch<SetStateAction<{ text: string; completed: boolean; id: string }[]>>
 }
 const TaskList = ({ taskList, setTaskList }: taskListType) => {
 	const { checkComplete, deleteTask, renameTask } = useTaskApp()

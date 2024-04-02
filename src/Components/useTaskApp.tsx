@@ -2,11 +2,12 @@ import { useState, ChangeEvent, Dispatch, SetStateAction } from 'react'
 
 const useTaskApp = () => {
 	const [task, setTask] = useState('')
-	const [id, setId] = useState(1)
+	const [id, setId] = useState('')
+	const unicalId = Date.now().toString(36) + Math.random().toString(36).substr(2)
 
 	type taskListType = {
-		taskList: { text: string; completed: boolean; id: number }[]
-		setTaskList: Dispatch<SetStateAction<{ text: string; completed: boolean; id: number }[]>>
+		taskList: { text: string; completed: boolean; id: string }[]
+		setTaskList: Dispatch<SetStateAction<{ text: string; completed: boolean; id: string }[]>>
 	}
 
 	const getTask = (event: ChangeEvent<HTMLInputElement>) => {
@@ -15,14 +16,14 @@ const useTaskApp = () => {
 	}
 
 	const addTask = ({ setTaskList, taskList }: taskListType) => {
-		setId(id + 1)
+		setId(unicalId)
 		const newTask = [...taskList, { text: task, completed: false, id: id }]
 		setTaskList(newTask)
 		setTask('')
 		localStorage.setItem('taskList', JSON.stringify(newTask))
 	}
 
-	const checkComplete = (id: number, { taskList, setTaskList }: taskListType) => {
+	const checkComplete = (id: string, { taskList, setTaskList }: taskListType) => {
 		const updateTaskComplete = [...taskList]
 		updateTaskComplete.map(task => {
 			if (task.id === id) {
@@ -33,14 +34,14 @@ const useTaskApp = () => {
 		localStorage.setItem('taskList', JSON.stringify(updateTaskComplete))
 	}
 
-	const deleteTask = (id: number, { taskList, setTaskList }: taskListType) => {
+	const deleteTask = (id: string, { taskList, setTaskList }: taskListType) => {
 		const updateTask = [...taskList]
 		const newArr = updateTask.filter(task => task.id !== id)
 		setTaskList(newArr)
 		localStorage.setItem('taskList', JSON.stringify(newArr))
 	}
 
-	const renameTask = (id: number, newText: string | null, { setTaskList, taskList }: taskListType) => {
+	const renameTask = (id: string, newText: string | null, { setTaskList, taskList }: taskListType) => {
 		if (newText) {
 			const updateTaskList = taskList.map(task => {
 				if (task.id === id) {
